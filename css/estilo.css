@@ -52,3 +52,10 @@ footer {
 footer ul li{
 	float: left;
 }
+
+
+.fieldset{
+	border: 2px;
+	color:white;
+	border-color: white;
+}

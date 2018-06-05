@@ -1,15 +1,16 @@
 <?php 
 session_start(); 
-include 'credenciales.php'; 
+include 'credenciales.php';
 if(isset($_REQUEST["login"])){  	
  	$usuario=SQLsegura($_REQUEST["user"]); 
  	$contra=SQLsegura($_REQUEST["pass"]); 
  	$conexion = new mysqli(SERVIDOR,USUARIO,CONTRA,BASEDATOS);  	
  	$sql="select nombre_tipo from tipo where idtipo=(select idtipo from empleado where nombre_usuario='$usuario' and clave='$contra')"; 
- 	$resultado= $conexion->query($sql);   	
+ 	$resultado= $conexion->query($sql);   
+	
  	$cuantos = mysqli_num_rows($resultado);  	
  	if($cuantos==0){ 
- 	 	header("Location:login.php"); 
+ 	 	header("Location:usuario.php"); 
  	} 
  	$fila = $resultado->fetch_array(MYSQLI_NUM); 
  	$nivel=$fila["0"];  	
@@ -27,7 +28,7 @@ if(isset($_REQUEST["login"])){
 } 
 if(isset($_REQUEST["cerrar"])){  	
 	session_destroy();  	
-	header("Location:login.php"); 
+	header("Location:usuario.php"); 
 } 
 function SQLsegura($strVar){
       //proteger banned, final, i

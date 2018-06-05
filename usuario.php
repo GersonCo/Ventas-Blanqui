@@ -58,7 +58,7 @@
 						<a href="#" class="nav-link" class="active" style="background-color: black; color: white;">Carrito de compra</a>
 					</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<li class="nav-item">
-						<a href="?pg=login.php" class="nav-link" class="active" style="background-color: black; color: white;">Iniciar Sesion</a>
+						<a href="login.php" class="nav-link" class="active" style="background-color: black; color: white;">Iniciar Sesion</a>
 					</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</ul>
 			</div>

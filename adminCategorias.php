@@ -75,3 +75,4 @@ while($fila=$rs->fetch_assoc()){
  </form>
  </div> 
 </div> 
+<br><br><br>

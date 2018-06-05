@@ -69,8 +69,10 @@ if(isset($_POST["agregar"])){
     $clave=$_POST["clave"];
     $clave2=$_POST["clave2"];
 
-    if ($clave==$clave2) {
-        $sql="insert into empleado(idempleado,idtipo,nombre_empleado,apellido_empleado,cargo,nombre_usuario,clave) values('','$idtipo','$nombre','$apellido','$cargo','$nombre_usuario','$clave')";
+    $contrae=md5($clave);
+    $contraEn=md5($clave2);
+    if ($contrae==$contraEn) {
+        $sql="insert into empleado(idempleado,idtipo,nombre_empleado,apellido_empleado,cargo,nombre_usuario,clave) values('','$idtipo','$nombre','$apellido','$cargo','$nombre_usuario','$contrae')";
     }else{
       echo "La contraseña que usted ingreso no coincide vuleva a introducirla!!!";
 

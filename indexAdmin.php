@@ -1,14 +1,16 @@
-<?php  
-	 if (isset($_SESSION["usuario"]["nombre"]) && ($_SESSION["usuario"]["nivel"]=='Admininistrador')){
+<?php 
+ //if (isset($_SESSION['admin']=='Administrador')) {
+ 	
+ //}
 
-?>
+ ?>
 
 <?php 
-@session_start();
+include 'acceso.php';
 if (isset($_POST['cerrar'])) {
-	unset($_SESSION['admin']);
+	unset($_SESSION['Administrador']);
 	echo "<script>
-	location.href='index.php';</script>";
+	location.href='usuario.php';</script>";
 }
  ?>
 
@@ -48,7 +50,7 @@ if (isset($_POST['cerrar'])) {
 				<ul class="navbar-nav">
 					<li class="nav-item" class="active">
 						<a href="indexAdmin.php" class="nav-link" style="color:white;">Inicio</a>
-					</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</li>&nbsp;
 					<li class="dropdown" style="padding-top: 10px;" >
 						<a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" style="text-decoration: none;">Productos <span class="caret"></span></a>
 						<ul class="dropdown-menu" style="background-color: black; color: white;">
@@ -212,9 +214,3 @@ if (isset($_POST['cerrar'])) {
 
 </body>
 </html>
-
-<?php  
-}else{
-		header('location:usuario.php');
-	}
-?>

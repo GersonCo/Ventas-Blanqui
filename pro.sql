@@ -16,31 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`pro` /*!40100 DEFAULT CHARACTER SET lat
 
 USE `pro`;
 
-/*Table structure for table ` producto` */
-
-DROP TABLE IF EXISTS ` producto`;
-
-CREATE TABLE ` producto` (
-  `idproducto` int(10) NOT NULL AUTO_INCREMENT,
-  `nombre_producto` varchar(50) DEFAULT NULL,
-  `precio` float DEFAULT NULL,
-  `descripcion` blob,
-  `stock_minimo` int(10) DEFAULT NULL,
-  `idcategoria` int(10) DEFAULT NULL,
-  `idmarca` int(10) DEFAULT NULL,
-  `idempleado` int(10) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idproducto`),
-  KEY `fkidcategoria` (`idcategoria`),
-  KEY `fkidmarca` (`idmarca`),
-  KEY `fkidempleado` (`idempleado`),
-  CONSTRAINT `fkidcategoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
-  CONSTRAINT `fkidempleado` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`),
-  CONSTRAINT `fkidmarca` FOREIGN KEY (`idmarca`) REFERENCES `marca` (`idmarca`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table ` producto` */
-
 /*Table structure for table `cardex` */
 
 DROP TABLE IF EXISTS `cardex`;
@@ -52,10 +27,11 @@ CREATE TABLE `cardex` (
   `precio` float DEFAULT NULL,
   `tipo_transaccion` varchar(50) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
+  `cantidad` int(10) DEFAULT NULL,
   PRIMARY KEY (`idcardex`),
   KEY `fkidproducto` (`idproducto`),
   KEY `fkidrecibo1` (`idrecibo`),
-  CONSTRAINT `fkidproducto` FOREIGN KEY (`idproducto`) REFERENCES ` producto` (`idproducto`),
+  CONSTRAINT `fkidproducto` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`),
   CONSTRAINT `fkidrecibo1` FOREIGN KEY (`idrecibo`) REFERENCES `recibo` (`idrecibo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,9 +45,17 @@ CREATE TABLE `categoria` (
   `idcategoria` int(10) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `categoria` */
+
+insert  into `categoria`(`idcategoria`,`nombre_categoria`) values 
+(1,'Productos Plasticos'),
+(2,'Productos Textiles'),
+(3,'Electrodomesticos'),
+(4,'Productos Metalicos'),
+(5,'Productos De Madera'),
+(6,'Productos De Cocina');
 
 /*Table structure for table `cliente` */
 
@@ -102,7 +86,7 @@ CREATE TABLE `detalle_recibo` (
   PRIMARY KEY (`iddetallerecibo`),
   KEY `fkidrecibo` (`idrecibo`),
   KEY `fkidproducto1` (`idproducto`),
-  CONSTRAINT `fkidproducto1` FOREIGN KEY (`idproducto`) REFERENCES ` producto` (`idproducto`),
+  CONSTRAINT `fkidproducto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`),
   CONSTRAINT `fkidrecibo` FOREIGN KEY (`idrecibo`) REFERENCES `recibo` (`idrecibo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -123,12 +107,14 @@ CREATE TABLE `empleado` (
   PRIMARY KEY (`idempleado`),
   KEY `fkidtipo` (`idtipo`),
   CONSTRAINT `fkidtipo` FOREIGN KEY (`idtipo`) REFERENCES `tipo` (`idtipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `empleado` */
 
 insert  into `empleado`(`idempleado`,`idtipo`,`nombre_empleado`,`apellido_empleado`,`cargo`,`nombre_usuario`,`clave`) values 
-(1,1,'Gerson Edgardo','Coto Rodriguez','Jefe','Gcoto','1234');
+(1,1,'Gerson Edgardo','Coto Rodriguez','Jefe','Gcoto','1234'),
+(3,2,'Roberto Carlos','Salazar Ruano','Jefe de Jefes','Rsalazar','jeymisalazar'),
+(4,2,'Erick Mauricio','Lopez ','Vendedor','Elopez','234');
 
 /*Table structure for table `marca` */
 
@@ -141,6 +127,32 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `marca` */
+
+/*Table structure for table `producto` */
+
+DROP TABLE IF EXISTS `producto`;
+
+CREATE TABLE `producto` (
+  `idproducto` int(10) NOT NULL AUTO_INCREMENT,
+  `nombre_producto` varchar(50) DEFAULT NULL,
+  `precio` float DEFAULT NULL,
+  `descripcion` blob,
+  `stock_minimo` int(10) DEFAULT NULL,
+  `idcategoria` int(10) DEFAULT NULL,
+  `idmarca` int(10) DEFAULT NULL,
+  `idempleado` int(10) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `existencia` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idproducto`),
+  KEY `fkidcategoria` (`idcategoria`),
+  KEY `fkidmarca` (`idmarca`),
+  KEY `fkidempleado` (`idempleado`),
+  CONSTRAINT `fkidcategoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
+  CONSTRAINT `fkidempleado` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`),
+  CONSTRAINT `fkidmarca` FOREIGN KEY (`idmarca`) REFERENCES `marca` (`idmarca`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `producto` */
 
 /*Table structure for table `recibo` */
 

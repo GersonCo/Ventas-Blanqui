@@ -1,7 +1,4 @@
-<?php  
-	 if (isset($_SESSION["usuario2"]["nombre"]) && ($_SESSION["usuario2"]["nivel"]=='Admininistrador')){
 
-?>
 
 <?php 
 @session_start();
@@ -213,8 +210,3 @@ if (isset($_POST['cerrar'])) {
 </html>
 
 
-<?php  
-}else{
-		header('location:usuario.php');
-	}
-?>
